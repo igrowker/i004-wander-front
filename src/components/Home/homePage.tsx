@@ -28,24 +28,36 @@ const Home: React.FC = () => {
         {/* Sección Popular */}
         <section className="section">
           <h2 className="section-title">Popular</h2>
-          <div
-            className="experience-card"
-            style={{ backgroundImage: "url(https://picsum.photos/200/200)" }}
-          >
-            <div className="experience-info">
-              <h3 className="experience-title">Nature's Symphony (FR)</h3>
-              <p className="experience-date">Cascading Falls 17/08/2023</p>
-              <button className="reserve-button">Reservar</button>
+          <div className="grid-container">
+            <div className="experience-card">
+              <div
+                className="experience-image"
+                style={{
+                  backgroundImage: "url(https://picsum.photos/600/600)",
+                }}
+              ></div>
+              <div className="experience-info">
+                <div className="experience-info-content">
+                  <h3 className="experience-title">Nature's Symphony (FR)</h3>
+                  <p className="experience-date">Cascading Falls 17/08/2023</p>
+                </div>
+                <button className="reserve-button">Reservar</button>
+              </div>
             </div>
-          </div>
-          <div
-            className="experience-card"
-            style={{ backgroundImage: "url(https://picsum.photos/200/200)" }}
-          >
-            <div className="experience-info">
-              <h3 className="experience-title">Cultural Rhythms (ITA)</h3>
-              <p className="experience-date">Heritage House 19/09/2023</p>
-              <button className="reserve-button">Reservar</button>
+            <div className="experience-card">
+              <div
+                className="experience-image"
+                style={{
+                  backgroundImage: "url(https://picsum.photos/600/600)",
+                }}
+              ></div>
+              <div className="experience-info">
+                <div className="experience-info-content">
+                  <h3 className="experience-title">Cultural Rhythms (ITA)</h3>
+                  <p className="experience-date">Heritage House 19/09/2023</p>
+                </div>
+                <button className="reserve-button">Reservar</button>
+              </div>
             </div>
           </div>
         </section>
@@ -53,7 +65,7 @@ const Home: React.FC = () => {
         {/* Sección Última llamada */}
         <section className="ultima-llamada mt-8">
           <h2 className="section-title2">Última llamada</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid-container2">
             <div
               className="experience-card2"
               style={{ backgroundImage: "url(https://picsum.photos/200/200)" }}
@@ -95,7 +107,7 @@ const Home: React.FC = () => {
 
         {/* Sección Categorías */}
         <section className="section">
-          <h2 className="section-title">Categorías</h2>
+          <h2 className="section-title2">Categorías</h2>
           <div className="category-tags">
             <span className="category">Rural y agro</span>
             <span className="category">Naturaleza</span>

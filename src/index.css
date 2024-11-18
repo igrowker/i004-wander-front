@@ -3,15 +3,16 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: "Montserrat";
-    font-style: normal;
-    font-weight: 400;
-    src: url("./assets//fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets//fonts/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
 }
 
 body {
-    /* Reglas para ajustar siempre la versión mobile a un tamaño máximo y al centro */
-    @apply max-w-[375px] w-full mx-auto
+  /* Reglas para ajustar siempre la versión mobile a un tamaño máximo y al centro */
+  @apply max-w-[375px] w-full mx-auto;
 }
 
 /* Forgot Password */
@@ -30,13 +31,13 @@ body {
 
 .forgot-password-input {
   @apply mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm 
-             focus:outline-none focus:ring-2 focus:ring-customOrange focus:border-customOrange;
+             focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary;
 }
 
 .forgot-password-button {
   @apply w-full flex justify-center py-2 px-4 border border-transparent rounded-md 
-           shadow-sm text-sm font-medium text-white bg-customOrange hover:bg-customOrange 
-           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-customOrange;
+           shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
 }
 
 .forgot-password-button:disabled {

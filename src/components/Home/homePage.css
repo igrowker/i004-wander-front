@@ -5,12 +5,17 @@
 
 /* Estilos generales */
 .home {
-  @apply p-4 md:p-8;
+  @apply absolute inset-0 bg-light bg-opacity-40; /* Fondo con color light */
 }
 
 .header {
-  @apply relative bg-local bg-center h-64 flex flex-col items-center justify-center text-white;
+  @apply relative flex flex-col justify-center items-start text-white bg-cover bg-center h-96 md:h-[50vh];
   background-image: url("https://picsum.photos/600/600");
+  background-color: var(--color-light); /* Añadir el color personalizado aquí */
+}
+
+.grid-container {
+  @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0;
 }
 
 .logo {
@@ -22,60 +27,78 @@
 }
 
 .search-bar {
-  @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-white rounded-full shadow-md flex items-center px-4 py-2 w-11/12 md:w-2/3;
+  @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 bg-light rounded-full shadow-md flex items-center px-4 py-2 w-11/12 md:w-2/3;
   /* Ajusta el tamaño y el color de fondo para que el search bar parezca superpuesto */
 }
 
 .search-input {
-  @apply flex-grow outline-none px-2;
+  @apply flex-grow outline-none px-2 bg-light; /* Fondo con color light */
 }
 
 .search-button {
-  @apply text-xl text-gray-500 cursor-pointer;
+  @apply text-xl text-brandGrey cursor-pointer;
 }
 
 .header::before {
   content: "";
   @apply absolute inset-0 bg-black opacity-40;
 }
+
 /* Sección Popular y Última llamada */
 .section {
-  @apply mb-8 pt-7;
+  @apply bg-white mb-5 pt-7;
 }
 
 .section-title {
-  @apply text-lg font-semibold mb-4;
+  @apply text-lg bg-white font-semibold mb-0; /* Fondo con color light */
 }
 
 .experience-card {
-  @apply bg-cover bg-center rounded-lg h-64 relative text-white shadow-md overflow-hidden mb-4;
+  @apply relative bg-white flex flex-col justify-between items-center p-2 h-80 rounded-lg; /* Establecemos el fondo blanco */
+}
+
+.experience-image {
+  @apply w-full h-44 rounded-lg object-none; /* Fondo con color light */
 }
 
 .experience-info {
-  @apply absolute bottom-0 w-full h-full flex flex-col items-center justify-center bg-gradient-to-t from-black/60 to-transparent text-white;
+  @apply absolute bottom-0 w-full p-4 bg-white text-black flex justify-between items-center; /* Flex para el contenedor */
 }
 
 .experience-title {
-  @apply text-lg font-semibold text-center;
+  @apply text-lg font-semibold mb-2;
 }
 
 .experience-date {
-  @apply text-sm mt-1;
+  @apply text-sm mb-2;
 }
 
 .reserve-button {
-  @apply bg-orange-500 text-white rounded-md px-4 py-2 mt-3 shadow hover:bg-customOrange;
+  @apply text-sm bg-primary text-white px-4 py-2 rounded-full shadow-md hover:bg-primary;
+}
+
+/* Modificar el espacio entre las tarjetas en el contenedor de grid */
+.grid {
+  @apply gap-2; /* Ajusta el espacio entre las tarjetas */
 }
 
 /* *Ultima Llamada*/
 
 .experience-card2 {
-  @apply bg-cover bg-center rounded-lg h-56 relative text-white shadow-md overflow-hidden;
+  @apply bg-light bg-cover bg-center rounded-lg h-56 relative text-white shadow-md overflow-hidden; /* Fondo con color light */
   background-size: cover;
 }
 
+.grid-container2 {
+  @apply grid grid-cols-2 sm:grid-cols-4 gap-0;
+}
+
+.grid-container2 img {
+  @apply w-24 h-24; /* Ajusta las imágenes a un tamaño fijo */
+}
+
 .section-title2 {
-  @apply text-lg font-semibold mb-3;
+  @apply bg-white text-lg font-semibold mb-3;
 }
 
 .experience-image2 {
@@ -100,5 +123,5 @@
 }
 
 .category {
-  @apply px-4 py-2 bg-customOrange text-white rounded-full text-sm cursor-pointer;
+  @apply px-4 py-2 bg-primary text-white rounded-full text-sm cursor-pointer;
 }
