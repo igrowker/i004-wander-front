@@ -7,15 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        customRed: '#F63428',
-        customOrange: '#FF9D14',
-        customYellow: '#EBB12A',
-        customBlack: '#0F0A02',
-        customGray: '#EAEAEA',
+        brandYellow: '#FF9D14',
+        brandGrey: '#D3D3D3',
+        primary: "#FF9D14",
+        secondary: "#EBB12A",
+        tertiary: "#F63428",
+        light: "#EAEAEA",
+        dark: "#0F0A02",
       },
       fontFamily: {
-        sans: ['Montserrat', 'sans-serif'], // Montserrat como fuente sans
-      },
+        sans: ["Montserrat", "sans-serif"]
+      }
     },
   },
   plugins: [],

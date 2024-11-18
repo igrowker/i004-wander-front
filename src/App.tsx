@@ -1,14 +1,16 @@
-import './App.css'
-import Home from './components/Home/homePage'
+import "./App.css";
+import AppRoutes from "./routes/AppRoutes";
+
+import Home from "./components/Home/homePage";
 function App() {
-  
   return (
     <>
-     {/* <h1>Wander</h1> */}
+      <AppRoutes />
+      {/* <h1>Wander</h1> */}
 
-     <Home/>
+      <Home />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
