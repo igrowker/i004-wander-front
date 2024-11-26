@@ -26,7 +26,7 @@ const Home: React.FC = () => {
 
       <main>
         {/* Sección Popular */}
-        <section className="section">
+        <section className="section section-padding">
           <h2 className="section-title">Popular</h2>
           <div className="grid-container">
             <div className="experience-card">
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
         </section>
 
         {/* Sección Última llamada */}
-        <section className="ultima-llamada mt-8">
+        <section className="ultima-llamada ultima-llamada section-padding">
           <h2 className="section-title2">Última llamada</h2>
           <div className="grid-container2">
             <div

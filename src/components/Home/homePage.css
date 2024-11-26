@@ -125,3 +125,11 @@
 .category {
   @apply px-4 py-2 bg-primary text-white rounded-full text-sm cursor-pointer;
 }
+
+.section {
+  @apply px-4 py-6; /* Espaciado uniforme para la sección Popular */
+}
+
+.ultima-llamada {
+  @apply px-4 py-6; /* Espaciado uniforme para la sección Última llamada */
+}
