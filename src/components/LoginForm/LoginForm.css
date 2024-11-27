@@ -1,0 +1,7 @@
+.form__error-notification {
+	@apply text-[10px] text-red-500
+}
+
+.form__success-notification {
+	@apply text-[10px] text-green-500
+}

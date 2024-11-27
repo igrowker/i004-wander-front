@@ -6,24 +6,24 @@ import card from '../assets/icons/icon-card.svg'
 
 const detailsList = [
     {
+        field: 'email',
         icon: email,
         title: 'Email',
-        data: 'ale@travel.com'
     },
     {
+        field: 'phone',
         icon: phone,
         title: 'Móvil',
-        data: '+34 600 123 123'
     },
     {
+        field: 'location',
         icon: location,
         title: 'Ubicación',
-        data: 'Valencia, España'
     },
     {
+        field: 'bookings',
         icon: card,
-        title: 'Pagos',
-        data: ''
+        title: 'Reservas',
     },
 ]
 

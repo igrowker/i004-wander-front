@@ -1,7 +1,15 @@
-.form__error-notification {
-	@apply text-[10px] text-red-500
+.form__error-validation {
+	@apply text-red-500 text-xs
 }
 
-.form__success-notification {
-	@apply text-[10px] text-green-500
+.form__notification {
+	@apply w-fit mt-2 mx-auto px-3 py-1 rounded-md
+}
+
+.form__notification--success {
+	@apply bg-green-200 text-green-500
+}
+
+.form__notification--error {
+	@apply bg-red-200 text-red-500
 }

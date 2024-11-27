@@ -1,31 +1,45 @@
 import { z } from "zod"
 
-// TODO: El trim() para el nombre no funciona como se espera
-
-export const signUpSchema = z.object({
+export const signUpSchema = z
+.object({
     name: z
         .string()
-        .min(1, "Name is required")
-        .regex(/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/, "Please, use only letters")
-        .trim(),
+        .min(2, "El nombre debe tener al menos 2 caracteres")
+        .regex(/^[A-Za-záéíóúÁÉÍÓÚñÑ\s]+$/, "Por favor, usa solo letras")
+        .trim()
+        .transform((val) => val.replace(/\s+/g, ' ').trim()),
     email: z
         .string()
-        .min(1, "Email is required")
-        .email()
+        .min(1, "El correo es obligatorio")
+        .email({
+            message: "Formato incorrecto: example@demo.com"
+        })
         .trim()
         .toLowerCase(),
     password: z
         .string()
-        .min(8, "Password must be between 8 and 12 characters")
-        .max(12, "Password must be between 8 and 12 characters")
-        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#!])[A-Za-z\d@#!]+$/, "Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character (@, #, or !)"),
+        .min(8, "La contraseña debe tener al menos 8 caracteres")
+        .max(12, "La contraseña debe tener menos de 12 caracteres")
+        .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#!])[A-Za-z\d@#!]+$/, "La contraseña debe contener al menos una minúscula, una mayúscula, un número y uno de los siguientes caracteres (@, #, or !)"),
     confirmPassword: z.string(),
-    role: z.enum(["tourist", "provider"], {
-        errorMap: () => ({ message: "Please, select one option" })
+    phone: z.object({
+        prefix: z
+            .string({ message: "El prefijo es obligatorio" })
+            .regex(/^\+[1-9]\d{0,2}$/, "Introduzca un prefijo correcto"),
+        number: z
+            .string({ message: "El número de teléfono es obligatorio" })
+            .regex(/^\d{6,10}$/, "El número de teléfono debe tener en 6 y 10 dígitos"),
     }),
-    terms: z.boolean()
-}).refine(data => data.password === data.confirmPassword, {
-    message: "Passwords doesn't match",
+    role: z
+        .enum(["tourist", "provider"], {
+            errorMap: () => ({ message: "Por favor, selecciona un perfil" })
+        }),
+    age: z
+        .boolean()
+        .refine(val => val === true, "Para registrarte tienes que ser mayor de edad")
+})
+.refine(data => data.password === data.confirmPassword, {
+    message: "Las contraseñas no coinciden",
     path: ["confirmPassword"]
 })
 

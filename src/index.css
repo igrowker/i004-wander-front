@@ -11,6 +11,7 @@
 }
 
 body {
+<<<<<<< HEAD
   /* Reglas para ajustar siempre la versión mobile a un tamaño máximo y al centro */
   @apply max-w-[375px] w-full mx-auto;
 }
@@ -61,3 +62,28 @@ body {
 }
 
 /*-----------------------------------------------------------------------------------------------------------*/
+=======
+    /* Reglas para ajustar siempre la versión mobile a un tamaño máximo y al centro */
+    /* @apply max-w-[375px] w-full mx-auto */
+}
+
+.container-shadow {
+    box-shadow: 0 -1px 15px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    @apply text-sm text-neutral-600
+}
+
+input {
+    @apply py-4 p-3 text-sm ring-1 ring-neutral-400 rounded-full focus:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-neutral-400 cursor-default
+}
+
+select {
+    @apply px-4 py-3 rounded-full appearance-none
+}
+
+button {
+    @apply font-semibold bg-primary hover:bg-tertiary text-white text-center rounded-full disabled:bg-neutral-400 disabled:cursor-not-allowed
+}
+>>>>>>> 8a4d7874c34af10a95302241ee0177f0bd415912
