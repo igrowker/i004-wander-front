@@ -4,11 +4,18 @@ import { useState } from "react";
 import logoWander from "../assets/img/logowander.png";
 import menuIcon from "../assets/icons/icon-menu.svg";
 import closeIcon from "../assets/icons/icon-close.svg";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/auth.context";
+
 
 function NavBarLayout() {
 
+  const { user } = useContext(AuthContext);
+  
+
   const location = useLocation();
   const [modalOpen, setModalOpen] = useState(false);
+  
 
   // Funcion para abrir y cerrar el modal de navegacion
   const handleModal = () => {
@@ -26,33 +33,72 @@ function NavBarLayout() {
       <header className="w-full p-3 shadow-md">
         <div className="flex items-center justify-between">
           <img src={logoWander} alt="logowander" className="w-10 h-8" />
-          <img onClick={handleModal} src={menuIcon} alt="menu" className="w-6 h-6 cursor-pointer" />
+          <img
+            onClick={handleModal}
+            src={menuIcon}
+            alt="menu"
+            className="w-6 h-6 cursor-pointer"
+          />
         </div>
       </header>
 
       {/* Modal de Navegacion (No funcional hasta que se tengan la mayoria de paginas) */}
       {modalOpen && (
-        <div className="fixed top-0 left-0 z-50 flex justify-end w-screen h-screen bg-black/50" onClick={handleModal}>
+        <div
+          className="fixed top-0 left-0 z-50 flex justify-end w-screen h-screen bg-black/50"
+          onClick={handleModal}
+        >
           <nav
-            className="flex flex-col bg-white w-[70%] h-full p-3 animate-navbarAnimation pl-10"
+            className="flex flex-col bg-white w-[70%] h-full p-3 animate-navbarAnimation pl-10 gap-3"
             onClick={(e) => e.stopPropagation()}
           >
-            <img onClick={handleModal} src={closeIcon} alt="close icon" className="self-end w-6 h-6 cursor-pointer" />
+            <img
+              onClick={handleModal}
+              src={closeIcon}
+              alt="close icon"
+              className="self-end w-6 h-6 cursor-pointer"
+            />
             <Link to="/" className="text-xl font-bold" onClick={handleModal}>
               Inicio
             </Link>
             <Link to="#" className="text-xl font-bold" onClick={handleModal}>
+              Buscar Experiencias
+            </Link>
+            <Link
+              to="user-profile"
+              className="text-xl font-bold"
+              onClick={handleModal}
+            >
               Perfil
             </Link>
-            <Link to="#" className="text-xl font-bold" onClick={handleModal}>
-              Wander
-            </Link>
-            <Link to="#" className="text-xl font-bold" onClick={handleModal}>
-              Login
-            </Link>
-            <Link to="#" className="text-xl font-bold" onClick={handleModal}>
-              Register
-            </Link>
+
+            {!user ? (
+              <>
+                <Link
+                  to="/login"
+                  className="text-xl font-bold"
+                  onClick={handleModal}
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/register"
+                  className="text-xl font-bold"
+                  onClick={handleModal}
+                >
+                  Register
+                </Link>
+              </>
+            ) : (
+              <button
+                className="text-xl font-bold text-left"
+                onClick={() => {
+                  handleModal();
+                }}
+              >
+                Cerrar sesión
+              </button>
+            )}
           </nav>
         </div>
       )}
