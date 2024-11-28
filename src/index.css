@@ -17,3 +17,15 @@ body {
 .container-shadow {
     box-shadow: 0 -1px 15px rgba(0, 0, 0, 0.2);
 }
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #F2EBF7 !important;
+    border-radius: 50%;
+    opacity: 1;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #FF9D14 !important;
+    transform: scale(1.2);
+  }
