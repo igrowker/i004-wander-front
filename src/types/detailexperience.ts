@@ -2,7 +2,7 @@ export interface DetailExperience {
     id: string
     title: string,
     description: string,
-    location: string,
+    location: [country: string, city: string, lat: string, lon: string]
     hostId: string,
     price: number,
     availability: string[],
