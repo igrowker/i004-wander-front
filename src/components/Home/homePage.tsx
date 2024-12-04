@@ -7,36 +7,61 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./homePage.css";
 import { useNavigate } from "react-router-dom";
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt } from "react-icons/fa/index";
-import axios from "axios";
+
+import { formatCategory, formatToShortDate } from "../../utils/getDateFormat";
+import { DetailExperience } from "../../types/detailexperience";
+
+import imageCity from '../../assets/img/City.jpg';
 
 const Home: React.FC = () => {
+
+  const BACK_URL = import.meta.env.VITE_API_URL;
+
   const [search, setSearch] = useState("");
-  const [popularExperiences, setPopularExperiences] = useState([]);
-  const [ultimaLlamadaExperiences, setUltimaLlamadaExperiences] = useState<
-    any[]
-  >([]);
+  const [popularExperiences, setPopularExperiences] = useState<DetailExperience[]>([]);
+  const [ultimaLlamadaExperiences, setUltimaLlamadaExperiences] = useState<DetailExperience[]>([]);
   const navigate = useNavigate();
+
+  const getCodeCountry = (country: string) => {
+    switch (country) {
+      case "España":
+        return "ESP";
+      case "Francia":
+        return "FRA";
+      case "Italia":
+        return "ITA";
+      default:
+        return "";
+    }
+  }
 
   const handleCategoryClick = (category: string) => {
     // Redirigir al filtro correspondiente con la categoría en minúsculas
-    navigate(`/filters?category=${encodeURIComponent(category.toLowerCase())}`);
+    navigate(`/filters?tags=${encodeURIComponent(category.toLowerCase())}`);
   };
+
+  const handleImageClick = (id: string) => {
+    navigate(`/experience/${id}`);
+  }
+
 
   useEffect(() => {
     // Llamar a la API
     const fetchExperiences = async () => {
       try {
         const response = await fetch(
-          "https://newapi.rutasvip.click/api/experiences/get-all"
+          `${BACK_URL}/experiences/get-all`
         );
         const data = await response.json();
         setPopularExperiences(data.slice(0, 2)); // Guardar solo las dos primeras experiencias
+        console.log(popularExperiences);
       } catch (error) {
         console.error("Error fetching experiences:", error);
       }
     };
     fetchExperiences();
+
+    
   }, []);
 
   useEffect(() => {
@@ -44,7 +69,7 @@ const Home: React.FC = () => {
     const fetchExperiences = async () => {
       try {
         const response = await fetch(
-          "https://newapi.rutasvip.click/api/experiences/latest"
+          `${BACK_URL}/experiences/latest`
         );
         const data = await response.json();
         setUltimaLlamadaExperiences(data.slice(0, 4)); // Guardar solo las dos primeras experiencias
@@ -107,20 +132,20 @@ const Home: React.FC = () => {
                   className="experience-image"
                   style={{
                     backgroundImage: `url(${
-                      experience.image || "https://via.placeholder.com/600"
+                      experience.image || imageCity
                     })`,
                   }}
                 ></div>
                 <div className="experience-info">
                   <div className="experience-info-content">
-                    <h3 className="experience-title">{experience.title}</h3>
-                    <p className="experience-date">{experience.date}</p>
+                    <h3 className="experience-title">{experience.title + getCodeCountry(experience.location[0])}</h3>
+                    <p className="experience-date">{formatCategory(experience.tags) + " - "  + formatToShortDate(experience.createdAt)}</p>
                   </div>
                   <button
-                    className="reserve-button"
-                    onClick={() => navigate(`/experiences/${experience.id}`)}
+                    className="text-sm reserve-button"
+                    onClick={() => navigate(`/experience/${experience.id}`)}
                   >
-                    Reservar
+                    Ver más
                   </button>
                 </div>
               </div>
@@ -129,19 +154,18 @@ const Home: React.FC = () => {
         </section>
 
         {/* Sección Última llamada */}
-        <section className="ultima-llamada section-padding mt-8">
-          <h2 className="section-title2">Última llamada</h2>
+        <section className="mt-8 ultima-llamada section-padding">
+          <h2 className="section-title">Ultimos agregados</h2>
           <div className="grid-container2">
             {ultimaLlamadaExperiences.map((experience) => (
-              <div key={experience.id} className="experience-card2">
+              <div onClick={() => handleImageClick(experience.id)}key={experience.id} className="px-2 experience-card2">
                 <div
                   className="experience-image"
                   style={{
                     backgroundImage: `url(${
-                      experience.image || "https://via.placeholder.com/200"
+                      experience.image || imageCity
                     })`,
                   }}
-                  onClick={() => handleImageClick(experience.id)} // Click on image redirects
                 ></div>
                 <div className="experience-info2">
                   <h3 className="experience-title2">{experience.title}</h3>
@@ -197,12 +221,6 @@ const Home: React.FC = () => {
               onClick={() => handleCategoryClick("Eventos")}
             >
               Eventos
-            </span>
-            <span
-              className="category"
-              onClick={() => handleCategoryClick("Última llamada")}
-            >
-              Última llamada
             </span>
           </div>
         </section>

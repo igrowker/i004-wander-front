@@ -4,17 +4,17 @@
 
 /* Contenedor principal */
 .home {
-  @apply bg-white font-sans text-gray-800;
+  @apply font-sans text-gray-800 bg-white;
 }
 
 /* Header */
 .header {
-  @apply relative bg-cover bg-center text-black flex flex-col items-center rounded-md p-8 pt-9;
+  @apply relative flex flex-col items-center p-8 text-black bg-center bg-cover rounded-md pt-9;
   background-image: url("https://picsum.photos/seed/picsum/1500/1500"); /* Añadido padding-top para mover el contenido hacia abajo */
 }
 
 .header-title {
-  @apply text-2xl font-bold text-center mb-2;
+  @apply mb-2 text-2xl font-bold text-center;
 }
 .search-bar {
   @apply relative w-full max-w-md mt-8; /* Añadido margen superior para separar del header */
@@ -25,21 +25,21 @@
 }
 
 .search-button {
-  @apply absolute top-1/2 right-0 w-10 h-10 flex items-center justify-center bg-primary text-white rounded-full transform -translate-y-1/2 hover:bg-orange-600 transition-all; /* Posición absoluta a la derecha con diseño circular */
+  @apply absolute right-0 flex items-center justify-center w-10 h-10 text-white transition-all transform -translate-y-1/2 rounded-full top-1/2 bg-primary hover:bg-orange-600; /* Posición absoluta a la derecha con diseño circular */
 }
 
 /* Sección Popular */
 .section-title {
-  @apply text-xl font-semibold mb-3;
+  @apply px-4 mt-5 mb-4 text-xl font-semibold;
 }
 .grid-container {
   @apply grid grid-cols-2 gap-4;
 }
 /* .experience-card {
-  @apply bg-gray-50 rounded-md overflow-hidden;
+  @apply overflow-hidden rounded-md bg-gray-50;
 } */
 .experience-image {
-  @apply w-11/12 h-40 bg-cover bg-center rounded-lg mx-auto; /* Reduce ancho, centra con `mx-auto` */
+  @apply w-11/12 h-40 mx-auto bg-center bg-cover rounded-lg; /* Reduce ancho, centra con `mx-auto` */
 }
 
 .experience-info {
@@ -49,13 +49,13 @@
   @apply mb-4;
 }
 .experience-title {
-  @apply text-lg font-semibold mb-2;
+  @apply mb-2 text-lg font-semibold;
 }
 .experience-date {
-  @apply text-sm text-gray-600;
+  @apply text-sm font-semibold text-gray-600;
 }
 .reserve-button {
-  @apply px-4 py-2 bg-primary text-white rounded-md hover:bg-orange-600 transition-all;
+  @apply px-4 py-2 text-white transition-all rounded-md bg-primary hover:bg-orange-600;
 }
 
 /* Sección Última llamada */
@@ -64,7 +64,7 @@
 }
 
 .section-title2 {
-  @apply text-xl font-semibold mb-2;
+  @apply mb-2 text-xl font-semibold;
 }
 
 .grid-container2 {
@@ -72,7 +72,7 @@
 }
 
 .experience-card2 {
-  @apply mt-2 bg-gray-50 shadow-md rounded-md overflow-hidden;
+  @apply mt-2 overflow-hidden rounded-md shadow-md bg-gray-50;
   background-size: cover;
   background-position: center;
   /* Esto fuerza a que las tarjetas tengan el mismo tamaño */
@@ -83,12 +83,12 @@
 }
 
 .experience-info2 {
-  @apply mt-3 p-6  text-white shadow-md rounded-md overflow-hidden;
+  @apply p-6 mt-3 overflow-hidden text-white rounded-md shadow-md;
   height: 100%; /* Esto asegura que el contenedor de la información ocupe todo el alto disponible */
 }
 
 .experience-title2 {
-  @apply text-sm font-semibold mb-2;
+  @apply mb-2 text-sm font-semibold;
 }
 
 .experience-date2 {
@@ -96,10 +96,10 @@
 }
 /* Sección Categorías */
 .category-tags {
-  @apply flex flex-wrap gap-2 mt-6;
+  @apply flex flex-wrap gap-2 px-3 mt-4 mb-6;
 }
 .category {
-  @apply text-sm bg-primary text-white font-semibold px-4 py-2 rounded-full cursor-pointer hover:bg-orange-200 transition-all;
+  @apply px-4 py-2 text-sm font-semibold text-white transition-all rounded-full cursor-pointer bg-primary hover:bg-orange-200;
 }
 
 /* Responsivo */
