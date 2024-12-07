@@ -216,9 +216,13 @@ const AddExperience = () => {
       navigate("/user-profile");
     } catch (error) {
       console.error("Error al enviar los datos al backend:", error);
-      alert("Hubo un error al añadir la experiencia. Inténtalo nuevamente.");
+      alert("Hubo un error al añadir la experiencia. Inténtalo nuevamente.")
+
+      // Si falla handleSubmit por lo que sea, borramos las fotos que se subieron al bucket
+      const keys = s3Urls.map(url => url.split('/').pop()!)
+      await uploadServices.deleteImages(keys, user?.token!)
     }
-  };
+  }
 
   const [coords, setCoords] = useState<Coords>([undefined, undefined]);
   const [infoCoords, setInfoCoords] = useState<infoCoords>({});
