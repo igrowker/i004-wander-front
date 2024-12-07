@@ -10,23 +10,42 @@ class UploadServices {
         return response.data
     }
 
-    async notifyBackend(s3Url: string) {
-        const response = await this.api.post('/image', { s3Url })
+    async notifyBackend(s3Urls: string[], token: string) {
+        const response = await this.api.post('/image',
+            { s3Urls },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
         return response.data
     }
 
-    async uploadImage(imageForm: File) {
-        const { presignedUrl, s3Url } = await this.getPresignedUrl(imageForm.name)
+    async uploadImages(imageFiles: File[], token: string) {
 
-        await axios.put(presignedUrl, imageForm, {
-            headers: {
-                'Content-Type': imageForm.type
-            }
-        })
+        const presignedUrls = await Promise.all(
+            imageFiles.map(imgFile =>
+                this.getPresignedUrl(imgFile.name)
+            )
+        )
 
-        await this.notifyBackend(s3Url)
+        await Promise.all(
+            presignedUrls.map(({ presignedUrl }, i) =>
+                axios.put(presignedUrl, imageFiles[i], {
+                    headers: {
+                        'Content-Type': imageFiles[i].type,
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+            )
+        )
 
-        return { presignedUrl, s3Url }
+        const s3Urls = presignedUrls.map(({ s3Url }) => s3Url)
+
+        await this.notifyBackend(s3Urls, token)
+
+        return { s3Urls }
     }
 }
 

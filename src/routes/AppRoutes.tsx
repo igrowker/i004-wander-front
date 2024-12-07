@@ -26,12 +26,14 @@ const AppRoutes = () => {
     // Resetea la posicion del scroll al inicio de cada ruta
     useEffect(() => {
         window.scrollTo(0, 0);
-      }, [pathname]);
+    }, [pathname]);
 
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/filters" element={<Filters />} />
+            <Route path="/add-experience" element={<AddExperience />} />
+
 
             <Route element={<ProtectedPublicRoute />}>
                 <Route path="/login" element={<Login />} />
@@ -44,7 +46,7 @@ const AppRoutes = () => {
             {/* Rutas privadas sin contexto de reserva */}
             <Route element={<PrivateRoute />}>
                 <Route path="/user-profile" element={<UserProfile />} />
-                <Route path="/add-experience" element={<AddExperience />} />
+                {/* <Route path="/add-experience" element={<AddExperience />} /> */}
             </Route>
 
             {/* Rutas que necesitan contexto de reserva */}
